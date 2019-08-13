@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Projeto Evo Systems</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add_dep">add_dep</string>
+    <string name="title_activity_consultar_dep">Consultar_dep</string>
+    <string name="titulo_incluindo">Adicionar Departamento</string>
+    <string name="titulo_editando">Editar Departamento</string>
+    <string name="nome_obrigatorio">Nome Obrigatorio</string>
+    <string name="sigla_obrigatoria">Sigla Obrigatoria</string>
+</resources>
