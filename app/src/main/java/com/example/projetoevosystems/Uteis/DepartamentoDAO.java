@@ -159,7 +159,7 @@ public class DepartamentoDAO {
             excluir = true;
             while (cursor.moveToNext()){
                 this.id_dep = cursor.getInt(cursor.getColumnIndex("id_dep"));
-                nome_dep = cursor.getString(cursor.getColumnIndex("dep_nome"));
+                nome_dep = cursor.getString(cursor.getColumnIndex("nome_dep"));
                 sigla_dep = cursor.getString(cursor.getColumnIndex("sigla_dep"));
                 excluir = false;
             }

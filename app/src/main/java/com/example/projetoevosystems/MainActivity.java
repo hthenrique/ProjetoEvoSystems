@@ -32,6 +32,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton fab_fun = findViewById(R.id.fab_fun);
+        fab_fun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cadastrarfunclasse = new Intent(MainActivity.this, add_fun.class);
+                startActivity(cadastrarfunclasse);
+            }
+        });
+
         Button btn_consultadep = findViewById(R.id.btn_consultadep);
         btn_consultadep.setOnClickListener(new View.OnClickListener() {
             @Override

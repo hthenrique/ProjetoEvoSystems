@@ -27,7 +27,7 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_dep);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_depconsultar);
+        Toolbar toolbar = findViewById(R.id.toolbar_add_dep);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -36,19 +36,19 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
         listViewDepartamentos = (ListView)findViewById(R.id.listViewDepartamentos);
         listViewDepartamentos.setOnItemClickListener(this);
 
-        departamentoAdapter = new DepartamentoAdapter(this,new DepartamentoDAO(this).getDepartamentos());
+        departamentos = new DepartamentoDAO(this).getDepartamentos();
+        departamentoAdapter = new DepartamentoAdapter(this,departamentos);
         listViewDepartamentos.setAdapter(departamentoAdapter);
-
     }
-
 
     @Override
     public void onClick(View view) {
         finish();
     }
 
+    //Ação ao clicar no item
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id_dep) {
         DepartamentoDAO departamentoDAO = departamentos.get(position);
         Intent intent = new Intent(this,add_dep.class);
         intent.putExtra("consulta",departamentoDAO.getId_dep());

@@ -1,9 +1,6 @@
 package com.example.projetoevosystems;
 
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.projetoevosystems.Uteis.BdDepartamento;
 import com.example.projetoevosystems.Uteis.DepartamentoDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -33,7 +29,7 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_add_dep);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setHomeButtonEnabled(true);
-        Toolbar toolbar = findViewById(R.id.toolbar_depconsultar);
+        Toolbar toolbar = findViewById(R.id.toolbar_add_dep);
         setSupportActionBar(toolbar);
 
         editTextDep_nome = (EditText) findViewById(R.id.editTextDep_name);
@@ -92,6 +88,7 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
                 }
                 if (valido){
                     departamentoDAO.salvarDep();
+                    Toast.makeText(this, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 break;
@@ -106,7 +103,6 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
             case android.R.id.home:
                 Intent intentMainActivity = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intentMainActivity);
-                finishAffinity();
                 break;
             default:break;
         }
