@@ -128,7 +128,7 @@ public class DepartamentoDAO {
             while (cursor.moveToNext()){
                 DepartamentoDAO departamentoDAO = new DepartamentoDAO(context);
                 departamentoDAO.id_dep = cursor.getInt(cursor.getColumnIndex("id_dep"));
-                departamentoDAO.nome_dep = cursor.getString(cursor.getColumnIndex("dep_nome"));
+                departamentoDAO.nome_dep = cursor.getString(cursor.getColumnIndex("nome_dep"));
                 departamentoDAO.sigla_dep = cursor.getString(cursor.getColumnIndex("sigla_dep"));
                 departamentos.add(departamentoDAO);
             }

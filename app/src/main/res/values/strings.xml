@@ -7,4 +7,5 @@
     <string name="titulo_editando">Editar Departamento</string>
     <string name="nome_obrigatorio">Nome Obrigatorio</string>
     <string name="sigla_obrigatoria">Sigla Obrigatoria</string>
+    <string name="title_activity_add_fun">add_fun</string>
 </resources>

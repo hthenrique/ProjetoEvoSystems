@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".add_fun"
+            android:label="@string/title_activity_add_fun"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Consultar_dep"
             android:label="Consultar Departamento"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".add_dep"
             android:label="Adicionar Departamento"

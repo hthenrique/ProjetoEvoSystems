@@ -65,20 +65,6 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
             delete_btn.setEnabled(false);
     }
 
-    //Botão de voltar
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent intentMainActivity = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intentMainActivity);
-                finishAffinity();
-                break;
-            default:break;
-        }
-        return true;
-    }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -112,4 +98,19 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
             }
         }
     }
+
+    //Botão de voltar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intentMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intentMainActivity);
+                finishAffinity();
+                break;
+            default:break;
+        }
+        return true;
+    }
+
 }
