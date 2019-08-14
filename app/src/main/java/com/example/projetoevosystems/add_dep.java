@@ -27,10 +27,8 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_dep);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeButtonEnabled(true);
-        Toolbar toolbar = findViewById(R.id.toolbar_add_dep);
-        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         editTextDep_nome = (EditText) findViewById(R.id.editTextDep_name);
         editTextDep_sigla = (EditText) findViewById(R.id.editTextDep_sigla);
@@ -65,12 +63,15 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.cancel_btn:{
-                finish();
+                Intent intentMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intentMainActivity);
                 break;
             }
             case R.id.delete_btn:{
                 departamentoDAO.excluirDep();
-                finish();
+                Toast.makeText(this, "Departamento deletado", Toast.LENGTH_SHORT).show();
+                Intent intentMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intentMainActivity);
                 break;
             }
             case R.id.save_btn:{
@@ -89,7 +90,8 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
                 if (valido){
                     departamentoDAO.salvarDep();
                     Toast.makeText(this, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Intent intentMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intentMainActivity);
                 }
                 break;
             }

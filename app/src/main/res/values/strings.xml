@@ -5,7 +5,10 @@
     <string name="title_activity_consultar_dep">Consultar_dep</string>
     <string name="titulo_incluindo">Adicionar Departamento</string>
     <string name="titulo_editando">Editar Departamento</string>
-    <string name="nome_obrigatorio">Nome Obrigatorio</string>
-    <string name="sigla_obrigatoria">Sigla Obrigatoria</string>
+    <string name="titulo_incluindofun">Adicionar Funcionário</string>
+    <string name="titulo_editandofun">Editar Funcionário</string>
+    <string name="nome_obrigatorio">Nome Obrigatório</string>
+    <string name="sigla_obrigatoria">Sigla Obrigatória</string>
+    <string name="documento_obrigatorio">Documento Obrigatório</string>
     <string name="title_activity_add_fun">add_fun</string>
 </resources>

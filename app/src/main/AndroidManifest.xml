@@ -10,17 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Consultar_fun"
+            android:label="Consultar Funcionario" />
+        <activity
             android:name=".add_fun"
-            android:label="Adicionar Funcionario"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="Adicionar Funcionario"/>
         <activity
             android:name=".Consultar_dep"
-            android:label="Consultar Departamento"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Consultar Departamento"/>
         <activity
             android:name=".add_dep"
-            android:label="Adicionar Departamento"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Adicionar Departamento"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

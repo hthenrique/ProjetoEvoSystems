@@ -61,7 +61,7 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:src="@drawable/ic_add_dep"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="@color/doneColor"
         app:layout_constraintBottom_toTopOf="@+id/fab_fun"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -73,10 +73,11 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/doneColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add_fun"
-        android:focusable="true"
         tools:ignore="VectorDrawableCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BdDepartamento extends SQLiteOpenHelper {
 
@@ -50,5 +51,34 @@ public class BdDepartamento extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void inserirLabel(String label){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("id_dep", label);
+
+        db.insert("Tabela_dep",null,values);
+        db.close();
+    }
+
+    public List<String> getTodasLabels(){
+        List<String> labels = new ArrayList<String>();
+
+        String selecionarQuery = " SELECT * FROM Tabela_dep";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selecionarQuery,null);
+
+        if (cursor.moveToFirst()){
+            do {
+                labels.add(cursor.getString(1));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return labels;
+    }
 
 }

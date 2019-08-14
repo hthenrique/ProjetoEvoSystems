@@ -7,18 +7,6 @@
     android:id="@+id/linearLayout"
     tools:context=".Consultar_dep">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_add_dep"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:layout_conversion_absoluteHeight="56dp"
-        tools:layout_conversion_absoluteWidth="411dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
-
     <ListView
         android:id="@+id/listViewDepartamentos"
         android:layout_width="match_parent"

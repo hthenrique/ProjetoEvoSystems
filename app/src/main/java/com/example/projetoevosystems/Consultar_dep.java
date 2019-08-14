@@ -27,9 +27,6 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_dep);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_add_dep);
-        setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 

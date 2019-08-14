@@ -16,12 +16,18 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button btn_consultadep;
+    private Button btn_consultarfun;
+    private FloatingActionButton fab_cad;
+    private FloatingActionButton fab_fun;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab_cad = findViewById(R.id.fab_cad);
         fab_cad.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent consultardepclasse = new Intent(MainActivity.this, Consultar_dep.class);
                 startActivity(consultardepclasse);
+            }
+        });
+
+        Button btn_consultarfun = findViewById(R.id.btn_consultarfun);
+        btn_consultarfun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent consultarfunclasse = new Intent(MainActivity.this, Consultar_fun.class);
+                startActivity(consultarfunclasse);
             }
         });
     }
