@@ -35,7 +35,7 @@ public class FuncionarioAdapter extends ArrayAdapter<FuncionarioDAO> {
         textViewCodigoFun.setText(funcionarioDAO.getId_fun()+"");
         textViewNomeFun.setText(funcionarioDAO.getNome_fun().toString());
         textViewRG2.setText(funcionarioDAO.getRg_fun().toString());
-        textViewIDDEP.setText(funcionarioDAO.getId_dep_fk()+"");
+        textViewIDDEP.setText(funcionarioDAO.getId_dep_fk().toString());
 
         return convertView;
     }

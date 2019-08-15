@@ -37,7 +37,7 @@ public class BdDepartamento extends SQLiteOpenHelper {
                 "    nome_fun  TEXT     NOT NULL, " +
                 "    rg_fun    CHAR (9) NOT NULL " +
                 "                       UNIQUE, " +
-                "    id_dep_fk INTEGER  REFERENCES Tabela_dep (id_dep) " +
+                "    id_dep_fk TEXT  REFERENCES Tabela_dep (id_dep) " +
                 "                       NOT NULL " +
                 ")";
         db.execSQL(stringBuilderCreateTableFun);
@@ -62,7 +62,7 @@ public class BdDepartamento extends SQLiteOpenHelper {
     }
 
     public List<String> getTodasLabels(){
-        List<String> labels = new ArrayList<String>();
+        List<String> listaDep = new ArrayList<String>();
 
         String selecionarQuery = " SELECT * FROM Tabela_dep";
 
@@ -71,14 +71,14 @@ public class BdDepartamento extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()){
             do {
-                labels.add(cursor.getString(1));
+                listaDep.add(cursor.getString(1));
             }while (cursor.moveToNext());
         }
 
         cursor.close();
         db.close();
 
-        return labels;
+        return listaDep;
     }
 
 }

@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.projetoevosystems.Uteis.BdDepartamento;
+import com.example.projetoevosystems.Uteis.DbBackend;
+import com.example.projetoevosystems.Uteis.DepartamentoDAO;
+import com.example.projetoevosystems.Uteis.DepartamentoSpinnerAdapter;
 import com.example.projetoevosystems.Uteis.FuncionarioDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +20,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.List;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 public class add_fun extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,6 +31,9 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
     private FloatingActionButton deletefun_btn;
     private FloatingActionButton savefun_btn;
     private FloatingActionButton cancelfun_btn;
+    private ArrayAdapter<String> listAdapter;
+    private ArrayList<DepartamentoDAO> departamentos;
+    private DepartamentoSpinnerAdapter departamentoSpinnerAdapter;
 
     private final FuncionarioDAO funcionarioDAO = new FuncionarioDAO(this);
 
@@ -39,7 +44,7 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        spinnerDepartamentos = (Spinner) findViewById(R.id.spinnerDepartementos);
+        Spinner spinnerDepartamentos = (Spinner) findViewById(R.id.spinnerDepartementos);
         editTextFunNome = (EditText) findViewById(R.id.editTextFunNome);
         editTextRg = (EditText) findViewById(R.id.editTextRg);
         savefun_btn = (FloatingActionButton) findViewById(R.id.savefun_btn);
@@ -49,6 +54,26 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
         deletefun_btn.setOnClickListener(this);
         savefun_btn.setOnClickListener(this);
         cancelfun_btn.setOnClickListener(this);
+
+        DbBackend dbBackend = new DbBackend(add_fun.this);
+        String[] spinnerLista = dbBackend.getTodosSpinner();
+
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(add_fun.this,android.R.layout.simple_spinner_item, spinnerLista);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDepartamentos.setAdapter(spinnerAdapter);
+
+        spinnerDepartamentos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                CharSequence dep = (CharSequence) parent.getItemAtPosition(position);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
         if (getIntent().getExtras() != null){
@@ -63,14 +88,11 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
             setTitle(getString(R.string.titulo_incluindofun));
         }
 
-
         deletefun_btn.setEnabled(true);
         if (funcionarioDAO.getId_fun() == -1)
             deletefun_btn.setEnabled(false);
 
-
     }
-
 
     @Override
     public void onClick(View view) {
@@ -91,7 +113,6 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
                 boolean valido = true;
                 funcionarioDAO.setNome_fun(editTextFunNome.getText().toString().trim());
                 funcionarioDAO.setRg_fun(editTextRg.getText().toString().trim());
-                //Adicionar spinner aqui
 
                 if (funcionarioDAO.getNome_fun().equals("")){
                     editTextFunNome.setError(getString(R.string.nome_obrigatorio));
@@ -111,6 +132,7 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
             }
         }
     }
+
     //Botão de voltar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -142,10 +142,9 @@ public class DepartamentoDAO {
             if (bdDepartamento != null)
                 bdDepartamento.close();
         }
-
-
         return departamentos;
     }
+
 
     public void carregaDepPeloId (int id_dep){
 
@@ -163,7 +162,6 @@ public class DepartamentoDAO {
                 sigla_dep = cursor.getString(cursor.getColumnIndex("sigla_dep"));
                 excluir = false;
             }
-
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -176,4 +174,6 @@ public class DepartamentoDAO {
         }
 
     }
+
+
 }

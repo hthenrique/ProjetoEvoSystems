@@ -89,6 +89,7 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
                 }
                 if (valido){
                     departamentoDAO.salvarDep();
+
                     Toast.makeText(this, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
                     Intent intentMainActivity = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intentMainActivity);

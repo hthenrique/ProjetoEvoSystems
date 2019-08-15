@@ -14,7 +14,7 @@ public class FuncionarioDAO {
     private int id_fun;
     private String nome_fun;
     private String rg_fun;
-    private int id_dep_fk;
+    private String id_dep_fk;
     private Context context;
     private boolean excluir;
 
@@ -43,11 +43,11 @@ public class FuncionarioDAO {
         this.rg_fun = rg_fun;
     }
 
-    public int getId_dep_fk() {
+    public String getId_dep_fk() {
         return id_dep_fk;
     }
 
-    public void setId_dep_fk(int id_dep_fk) {
+    public void setId_dep_fk(String id_dep_fk) {
         this.id_dep_fk = id_dep_fk;
     }
 
@@ -104,7 +104,7 @@ public class FuncionarioDAO {
             sqLiteStatement.clearBindings();
             sqLiteStatement.bindString(1,nome_fun);
             sqLiteStatement.bindString(2,rg_fun);
-            sqLiteStatement.bindString(3, String.valueOf(id_dep_fk));
+            sqLiteStatement.bindString(3,id_dep_fk);
             if (id_fun != -1)
             sqLiteStatement.bindString(4, String.valueOf(id_fun));
             sqLiteStatement.executeInsert();
@@ -138,6 +138,7 @@ public class FuncionarioDAO {
                 funcionarioDAO.id_fun = cursor.getInt(cursor.getColumnIndex("id_fun"));
                 funcionarioDAO.nome_fun = cursor.getString(cursor.getColumnIndex("nome_fun"));
                 funcionarioDAO.rg_fun = cursor.getString(cursor.getColumnIndex("rg_fun"));
+                funcionarioDAO.id_dep_fk = cursor.getString(cursor.getColumnIndex("id_dep_fk"));
                 funcionarios.add(funcionarioDAO);
             }
         }catch (Exception e){
@@ -168,6 +169,7 @@ public class FuncionarioDAO {
                 this.id_fun = cursor.getInt(cursor.getColumnIndex("id_fun"));
                 nome_fun = cursor.getString(cursor.getColumnIndex("nome_fun"));
                 rg_fun = cursor.getString(cursor.getColumnIndex("rg_fun"));
+                id_dep_fk = cursor.getString(cursor.getColumnIndex("id_dep_fk"));
                 excluir = false;
             }
         }catch (Exception e){
