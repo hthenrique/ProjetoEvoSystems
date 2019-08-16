@@ -24,6 +24,7 @@ public class DepartamentoAdapter extends ArrayAdapter<DepartamentoDAO> {
         this.departamentos = departamentos;
     }
 
+    //metodo responsavel em setar os dados do banco na fragment da lista de funcionarios
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -31,6 +32,7 @@ public class DepartamentoAdapter extends ArrayAdapter<DepartamentoDAO> {
 
         convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_linha_consulta,null);
 
+        //localiza o textview que serão usado
         TextView textViewCodigodep = (TextView)convertView.findViewById(R.id.textViewCodigodep);
         TextView textViewNomedep = (TextView)convertView.findViewById(R.id.textViewNomedep);
         TextView textViewSigladep = (TextView)convertView.findViewById(R.id.textViewSigladep);

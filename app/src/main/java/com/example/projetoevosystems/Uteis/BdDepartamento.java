@@ -11,8 +11,9 @@ import java.util.List;
 
 public class BdDepartamento extends SQLiteOpenHelper {
 
-
+    //nome do banco de dados
     private static final String DATABASE = "BDDEP.db";
+    //versão do banco de dados
     private static final int DATABASE_VERSION = 1;
 
 
@@ -23,6 +24,7 @@ public class BdDepartamento extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
+        //cria a tabela de departamentos
         String stringBuilderCreateTableDep = " CREATE TABLE Tabela_dep ( " +
                 "    id_dep    INTEGER  PRIMARY KEY AUTOINCREMENT " +
                 "                       NOT NULL, " +
@@ -31,6 +33,7 @@ public class BdDepartamento extends SQLiteOpenHelper {
                 ")";
         db.execSQL(stringBuilderCreateTableDep);
 
+        //cria a tabela de departamentos
         String stringBuilderCreateTableFun = " CREATE TABLE Tabela_fun ( " +
                 "    id_fun    INTEGER  PRIMARY KEY AUTOINCREMENT " +
                 "                       NOT NULL, " +
@@ -44,41 +47,12 @@ public class BdDepartamento extends SQLiteOpenHelper {
 
     }
 
+    //exclui a tabela se ela ja existe
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(" DROP TABLE IF EXISTS Tabela_dep ");
         db.execSQL(" DROP TABLE IF EXISTS Tabela_fun ");
         onCreate(db);
-    }
-
-    public void inserirLabel(String label){
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put("id_dep", label);
-
-        db.insert("Tabela_dep",null,values);
-        db.close();
-    }
-
-    public List<String> getTodasLabels(){
-        List<String> listaDep = new ArrayList<String>();
-
-        String selecionarQuery = " SELECT * FROM Tabela_dep";
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selecionarQuery,null);
-
-        if (cursor.moveToFirst()){
-            do {
-                listaDep.add(cursor.getString(1));
-            }while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-
-        return listaDep;
     }
 
 }

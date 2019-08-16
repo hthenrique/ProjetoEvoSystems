@@ -59,6 +59,7 @@ public class FuncionarioDAO {
         this.excluir = excluir;
     }
 
+    //metodo de excluir funcionarios
     public boolean excluirFun(){
         BdDepartamento bdDepartamento = null;
         SQLiteDatabase sqLiteDatabase = null;
@@ -68,17 +69,21 @@ public class FuncionarioDAO {
             sqLiteDatabase = bdDepartamento.getWritableDatabase();
             sqLiteDatabase.beginTransaction();
 
+            //exclui funcionario pelo id
             sqLiteDatabase.delete("Tabela_fun", "id_fun = ?",new String[]{String.valueOf(id_fun)});
             excluir = true;
 
+            //começa o processo no banco de dados
             sqLiteDatabase.setTransactionSuccessful();
             sqLiteDatabase.endTransaction();
             return true;
         }catch (Exception e){
             e.printStackTrace();
+            //termina a transação
             sqLiteDatabase.endTransaction();
             return true;
         }finally {
+            //fecha os processos no banco de dados
             if (sqLiteDatabase != null)
                 sqLiteDatabase.close();
             if (bdDepartamento != null)
@@ -86,6 +91,7 @@ public class FuncionarioDAO {
         }
     }
 
+    //metodo de salvar funcionario
     public boolean salvarFun(){
         BdDepartamento bdDepartamento = null;
         SQLiteDatabase sqLiteDatabase = null;
@@ -94,11 +100,15 @@ public class FuncionarioDAO {
             bdDepartamento = new BdDepartamento(context);
             sqLiteDatabase = bdDepartamento.getWritableDatabase();
             String sql = "";
+            //insere um novo funcionario
             if (id_fun == -1){
                 sql = "INSERT INTO Tabela_fun (nome_fun,rg_fun,id_dep_fk) VALUES (?,?,?)";
-            }else {
+            }
+            //edita o funcionario ja existente
+            else {
                 sql = "UPDATE Tabela_fun SET nome_fun = ?,rg_fun = ?,id_dep_fk = ? WHERE id_fun = ?";
             }
+            //liga todos campos digitados com as as colunas do banco
             sqLiteDatabase.beginTransaction();
             SQLiteStatement sqLiteStatement = sqLiteDatabase.compileStatement(sql);
             sqLiteStatement.clearBindings();
@@ -107,15 +117,18 @@ public class FuncionarioDAO {
             sqLiteStatement.bindString(3,id_dep_fk);
             if (id_fun != -1)
             sqLiteStatement.bindString(4, String.valueOf(id_fun));
+            //executa a inserção de dados
             sqLiteStatement.executeInsert();
             sqLiteDatabase.setTransactionSuccessful();
             sqLiteDatabase.endTransaction();
             return true;
         }catch (Exception e){
             e.printStackTrace();
+            //termina a transação
             sqLiteDatabase.endTransaction();
             return false;
         }finally {
+            //fecha o banco de dados aberto
             if (sqLiteDatabase != null)
                 sqLiteDatabase.close();
             if (bdDepartamento != null)
@@ -123,6 +136,7 @@ public class FuncionarioDAO {
         }
     }
 
+    //metodo para listar funcionarios
     public ArrayList<FuncionarioDAO> getFuncionarios(){
         BdDepartamento bdDepartamento = null;
         SQLiteDatabase sqLiteDatabase = null;
@@ -132,7 +146,9 @@ public class FuncionarioDAO {
         try {
             bdDepartamento = new BdDepartamento(context);
             sqLiteDatabase = bdDepartamento.getReadableDatabase();
+            //cursor verifica todos dados das tabelas
             cursor = sqLiteDatabase.query("Tabela_fun",null,null,null,null,null,null);
+            //cursor passa todos os dados das colunas enquanto tiver dados
             while (cursor.moveToNext()){
                 FuncionarioDAO funcionarioDAO = new FuncionarioDAO(context);
                 funcionarioDAO.id_fun = cursor.getInt(cursor.getColumnIndex("id_fun"));
@@ -144,6 +160,7 @@ public class FuncionarioDAO {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
+            //fecha o banco de dados e encerra o cursor
             if ((cursor != null) && (!cursor.isClosed()))
                 cursor.close();
             if (sqLiteDatabase != null)
@@ -151,9 +168,11 @@ public class FuncionarioDAO {
             if (bdDepartamento != null)
                 bdDepartamento.close();
         }
+        //retorna os funcionarios
         return funcionarios;
     }
 
+    //carrega funcionarios pelo id
     public void carregaFunPeloId (int id_fun){
 
         BdDepartamento bdDepartamento = null;
@@ -163,8 +182,10 @@ public class FuncionarioDAO {
         try {
             bdDepartamento = new BdDepartamento(context);
             sqLiteDatabase = bdDepartamento.getReadableDatabase();
+            //cursor verifica os id's da tabela selecionada
             cursor = sqLiteDatabase.query("Tabela_fun",null,"id_fun = ?",new String[]{String.valueOf(id_fun)},null,null,null);
             excluir = true;
+            //enquanto tiver dados o cursor ir passar
             while (cursor.moveToNext()){
                 this.id_fun = cursor.getInt(cursor.getColumnIndex("id_fun"));
                 nome_fun = cursor.getString(cursor.getColumnIndex("nome_fun"));
@@ -175,6 +196,7 @@ public class FuncionarioDAO {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
+            //encerra o processo do cursor e fecha o banco de dados
             if ((cursor != null) && (!cursor.isClosed()))
                 cursor.close();
             if (sqLiteDatabase != null)

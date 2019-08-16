@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.projetoevosystems.Uteis.DepartamentoAdapter;
 import com.example.projetoevosystems.Uteis.DepartamentoDAO;
@@ -32,13 +31,16 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        //escuta se o departamento foi clicado
         listViewDepartamentos = (ListView)findViewById(R.id.listViewDepartamentos);
         listViewDepartamentos.setOnItemClickListener(this);
 
+        //chama todos os departamentos cadastrados
         departamentos = new DepartamentoDAO(this).getDepartamentos();
         departamentoAdapter = new DepartamentoAdapter(this,departamentos);
         listViewDepartamentos.setAdapter(departamentoAdapter);
 
+        //chama a tela de cadastro de departamentos
         FloatingActionButton fab_cad = findViewById(R.id.fab_add_dep);
         fab_cad.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +52,7 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
 
     }
 
+    //fecha a activity depois que tocar em um departamento para edita-los
     @Override
     public void onClick(View view) {
         finish();
@@ -65,6 +68,7 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
+    //chama o metodo que exclui o departamento
     @Override
     protected void onResume() {
         super.onResume();

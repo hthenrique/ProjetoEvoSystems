@@ -21,17 +21,20 @@ public class FuncionarioAdapter extends ArrayAdapter<FuncionarioDAO> {
         this.funcionarios = funcionarios;
     }
 
+    //metodo responsavel em setar os dados do banco na fragment da lista de funcionarios
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         FuncionarioDAO funcionarioDAO = funcionarios.get(position);
 
         convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_linha_consulta_fun,null);
 
+        //localiza o textview que serão usados
         TextView textViewCodigoFun = (TextView)convertView.findViewById(R.id.textViewCodigoFun);
         TextView textViewNomeFun = (TextView)convertView.findViewById(R.id.textViewNomeFun);
         TextView textViewRG2 = (TextView)convertView.findViewById(R.id.textViewRG2);
         TextView textViewIDDEP = (TextView)convertView.findViewById(R.id.textViewIDDEP);
 
+        //seta o dados do banco nas textview's da fragment
         textViewCodigoFun.setText(funcionarioDAO.getId_fun()+"");
         textViewNomeFun.setText(funcionarioDAO.getNome_fun().toString());
         textViewRG2.setText(funcionarioDAO.getRg_fun().toString());

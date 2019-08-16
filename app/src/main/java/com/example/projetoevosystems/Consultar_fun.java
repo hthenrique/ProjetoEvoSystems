@@ -32,13 +32,16 @@ public class Consultar_fun extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        //escuta se o funcionario foi clicado
         listViewFuncionarios = (ListView)findViewById(R.id.listViewFuncionarios);
         listViewFuncionarios.setOnItemClickListener(this);
 
+        //chama todos funcionarios cadastrados
         funcionarios = new FuncionarioDAO(this).getFuncionarios();
         funcionarioAdapter = new FuncionarioAdapter(this,funcionarios);
         listViewFuncionarios.setAdapter(funcionarioAdapter);
 
+        //botao para cadastrar um novo funcionario
         FloatingActionButton fab_fun = findViewById(R.id.fab_add_fun);
         fab_fun.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,11 +52,13 @@ public class Consultar_fun extends AppCompatActivity implements View.OnClickList
         });
     }
 
+    //fecha a atual activity depois que selecionar o funcionario para editar
     @Override
     public void onClick(View view) {
         finish();
     }
 
+    //ação ao clicar no funcionario
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id_fun) {
         FuncionarioDAO funcionarioDAO = funcionarios.get(position);
@@ -63,6 +68,7 @@ public class Consultar_fun extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
+    //exclui o funcionario escolhido
     @Override
     protected void onResume() {
         super.onResume();

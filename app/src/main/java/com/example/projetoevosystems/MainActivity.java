@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        //chama a tela de cadastro de departamentos
         FloatingActionButton fab_cad = findViewById(R.id.fab_cad);
         fab_cad.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //chama a tela de cadastro de funcionarios
         FloatingActionButton fab_fun = findViewById(R.id.fab_fun);
         fab_fun.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //chama a tela de consulta de departamentos
         Button btn_consultadep = findViewById(R.id.btn_consultadep);
         btn_consultadep.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //chama a tela de consulta de funcionarios
         Button btn_consultarfun = findViewById(R.id.btn_consultarfun);
         btn_consultarfun.setOnClickListener(new View.OnClickListener() {
             @Override

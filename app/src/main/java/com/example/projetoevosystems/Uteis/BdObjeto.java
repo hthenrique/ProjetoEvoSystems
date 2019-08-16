@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class BdObjeto {
 
+    //classe responsavel apenas para conectar o banco de dados
     private static BdDepartamento dbHelper;
     private SQLiteDatabase db;
 
@@ -13,9 +14,12 @@ public class BdObjeto {
         this.db = dbHelper.getReadableDatabase();
     }
 
+    //começa conexão com o banco de dados
     public SQLiteDatabase getDbConnection(){
         return this.db;
     }
+
+    //fecha conexão com o banco de dados
     public void closeDbConnection(){
         if (this.db != null){
             this.db.close();
