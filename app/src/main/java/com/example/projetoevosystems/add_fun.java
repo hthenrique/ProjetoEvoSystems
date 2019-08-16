@@ -2,16 +2,6 @@ package com.example.projetoevosystems;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.projetoevosystems.Uteis.BdDepartamento;
-import com.example.projetoevosystems.Uteis.DbBackend;
-import com.example.projetoevosystems.Uteis.DepartamentoDAO;
-import com.example.projetoevosystems.Uteis.DepartamentoSpinnerAdapter;
-import com.example.projetoevosystems.Uteis.FuncionarioDAO;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +10,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.nio.charset.Charset;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.projetoevosystems.Uteis.DbBackend;
+import com.example.projetoevosystems.Uteis.DepartamentoDAO;
+import com.example.projetoevosystems.Uteis.DepartamentoSpinnerAdapter;
+import com.example.projetoevosystems.Uteis.FuncionarioDAO;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 public class add_fun extends AppCompatActivity implements View.OnClickListener {
@@ -34,6 +31,7 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
     private ArrayAdapter<String> listAdapter;
     private ArrayList<DepartamentoDAO> departamentos;
     private DepartamentoSpinnerAdapter departamentoSpinnerAdapter;
+    String selectedDepId = "";
 
     private final FuncionarioDAO funcionarioDAO = new FuncionarioDAO(this);
 
@@ -66,12 +64,11 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 CharSequence dep = (CharSequence) parent.getItemAtPosition(position);
-
+                selectedDepId = dep.toString().split(" ")[0];
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -113,6 +110,7 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
                 boolean valido = true;
                 funcionarioDAO.setNome_fun(editTextFunNome.getText().toString().trim());
                 funcionarioDAO.setRg_fun(editTextRg.getText().toString().trim());
+                funcionarioDAO.setId_dep_fk(selectedDepId);
 
                 if (funcionarioDAO.getNome_fun().equals("")){
                     editTextFunNome.setError(getString(R.string.nome_obrigatorio));
@@ -145,5 +143,6 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
         }
         return true;
     }
+
 
 }

@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.projetoevosystems.Uteis.FuncionarioAdapter;
 import com.example.projetoevosystems.Uteis.FuncionarioDAO;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class Consultar_fun extends AppCompatActivity implements View.OnClickList
     private FuncionarioAdapter funcionarioAdapter;
     private ArrayList<FuncionarioDAO> funcionarios;
     private FuncionarioDAO funcionarioDAOEdição;
+    private FloatingActionButton fab_fun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,15 @@ public class Consultar_fun extends AppCompatActivity implements View.OnClickList
         funcionarios = new FuncionarioDAO(this).getFuncionarios();
         funcionarioAdapter = new FuncionarioAdapter(this,funcionarios);
         listViewFuncionarios.setAdapter(funcionarioAdapter);
+
+        FloatingActionButton fab_fun = findViewById(R.id.fab_fun);
+        fab_fun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cadastrarfunclasse = new Intent(Consultar_fun.this, add_fun.class);
+                startActivity(cadastrarfunclasse);
+            }
+        });
     }
 
     @Override

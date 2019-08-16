@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.projetoevosystems.Uteis.DepartamentoAdapter;
 import com.example.projetoevosystems.Uteis.DepartamentoDAO;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
     private DepartamentoAdapter departamentoAdapter;
     private ArrayList<DepartamentoDAO> departamentos;
     private DepartamentoDAO departamentoDAOEdicao;
+    private FloatingActionButton fab_add_dep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,16 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
         departamentos = new DepartamentoDAO(this).getDepartamentos();
         departamentoAdapter = new DepartamentoAdapter(this,departamentos);
         listViewDepartamentos.setAdapter(departamentoAdapter);
+
+        FloatingActionButton fab_cad = findViewById(R.id.fab_add_dep);
+        fab_cad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cadastrardepclasse = new Intent(Consultar_dep.this, add_dep.class);
+                startActivity(cadastrardepclasse);
+            }
+        });
+
     }
 
     @Override
