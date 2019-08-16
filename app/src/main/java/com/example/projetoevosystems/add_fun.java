@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -52,6 +53,24 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
         deletefun_btn.setOnClickListener(this);
         savefun_btn.setOnClickListener(this);
         cancelfun_btn.setOnClickListener(this);
+
+        //esconder teclado ao clicar fora dessas caixas
+        editTextFunNome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (!hasFocus){
+                    esconderTeclado(view);
+                }
+            }
+        });
+        editTextRg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (!hasFocus){
+                    esconderTeclado(view);
+                }
+            }
+        });
 
         DbBackend dbBackend = new DbBackend(add_fun.this);
         String[] spinnerLista = dbBackend.getTodosSpinner();
@@ -120,6 +139,10 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
                     editTextRg.setError(getString(R.string.documento_obrigatorio));
                     valido = false;
                 }
+                if (editTextRg.getText().length() < 9){
+                    editTextRg.setError(getString(R.string.documento_invalido));
+                    valido = false;
+                }
                 if (valido){
                     funcionarioDAO.salvarFun();
                     Toast.makeText(this, "Salvo com Sucesso", Toast.LENGTH_SHORT).show();
@@ -142,6 +165,15 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
             default:break;
         }
         return true;
+    }
+
+    //Esconder teclado
+    public void esconderTeclado(View v){
+        if (v != null){
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+
+        }
     }
 
 

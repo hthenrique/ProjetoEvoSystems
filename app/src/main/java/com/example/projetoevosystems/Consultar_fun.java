@@ -22,7 +22,7 @@ public class Consultar_fun extends AppCompatActivity implements View.OnClickList
     private FuncionarioAdapter funcionarioAdapter;
     private ArrayList<FuncionarioDAO> funcionarios;
     private FuncionarioDAO funcionarioDAOEdição;
-    private FloatingActionButton fab_fun;
+    private FloatingActionButton fab_add_fun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class Consultar_fun extends AppCompatActivity implements View.OnClickList
         funcionarioAdapter = new FuncionarioAdapter(this,funcionarios);
         listViewFuncionarios.setAdapter(funcionarioAdapter);
 
-        FloatingActionButton fab_fun = findViewById(R.id.fab_fun);
+        FloatingActionButton fab_fun = findViewById(R.id.fab_add_fun);
         fab_fun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

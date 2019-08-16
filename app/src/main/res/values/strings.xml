@@ -11,4 +11,5 @@
     <string name="sigla_obrigatoria">Sigla Obrigatória</string>
     <string name="documento_obrigatorio">Documento Obrigatório</string>
     <string name="title_activity_add_fun">add_fun</string>
+    <string name="documento_invalido">Documento inválido</string>
 </resources>

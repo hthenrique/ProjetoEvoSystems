@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -39,6 +40,23 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
         delete_btn.setOnClickListener(this);
         save_btn.setOnClickListener(this);
         cancel_btn.setOnClickListener(this);
+
+        editTextDep_nome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (!hasFocus){
+                    esconderTeclado(view);
+                }
+            }
+        });
+        editTextDep_sigla.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (!hasFocus){
+                    esconderTeclado(view);
+                }
+            }
+        });
 
 
         if (getIntent().getExtras() != null){
@@ -110,6 +128,15 @@ public class add_dep extends AppCompatActivity implements View.OnClickListener {
             default:break;
         }
         return true;
+    }
+
+    //Esconder teclado
+    public void esconderTeclado(View v){
+        if (v != null){
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+
+        }
     }
 
 }
