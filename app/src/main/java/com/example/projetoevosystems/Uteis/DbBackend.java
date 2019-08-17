@@ -24,7 +24,6 @@ public class DbBackend extends BdObjeto {
                 String codigodep = cursor.getString(cursor.getColumnIndex("id_dep"));
                 String nomedep = cursor.getString(cursor.getColumnIndex("nome_dep"));
                 String sigladep = cursor.getString(cursor.getColumnIndex("sigla_dep"));
-                spinnerDep.add("");
                 spinnerDep.add(codigodep + " - " + sigladep + " - " + nomedep);
             }while (cursor.moveToNext());
         }

@@ -66,7 +66,7 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.option_1:
-                Intent con_fun = new Intent(this,Consultar_fun_dep.class);
+                Intent con_fun = new Intent(this,Consultar_fun.class);
                 startActivity(con_fun);
                 return true;
                 default:
