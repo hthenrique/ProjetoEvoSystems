@@ -2,6 +2,7 @@ package com.example.projetoevosystems;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,6 +41,8 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
         departamentoAdapter = new DepartamentoAdapter(this,departamentos);
         listViewDepartamentos.setAdapter(departamentoAdapter);
 
+        registerForContextMenu(listViewDepartamentos);
+
         //chama a tela de cadastro de departamentos
         FloatingActionButton fab_cad = findViewById(R.id.fab_add_dep);
         fab_cad.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +53,25 @@ public class Consultar_dep extends AppCompatActivity implements View.OnClickList
             }
         });
 
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        getMenuInflater().inflate(R.menu.departamento_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.option_1:
+                Intent con_fun = new Intent(this,Consultar_fun_dep.class);
+                startActivity(con_fun);
+                return true;
+                default:
+                    return super.onContextItemSelected(item);
+        }
     }
 
     //fecha a activity depois que tocar em um departamento para edita-los

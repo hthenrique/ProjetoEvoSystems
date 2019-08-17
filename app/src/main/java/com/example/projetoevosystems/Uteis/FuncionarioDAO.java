@@ -206,5 +206,35 @@ public class FuncionarioDAO {
         }
     }
 
+    //carrega funcionario pelo id departamento
+    public void carregaFunPelofk (int id_dep_fk){
+        BdDepartamento bdDepartamento = null;
+        SQLiteDatabase sqLiteDatabase = null;
+        Cursor cursor = null;
+
+        try{
+            bdDepartamento = new BdDepartamento(context);
+            sqLiteDatabase = bdDepartamento.getReadableDatabase();
+            cursor = sqLiteDatabase.query("Tabela_fun", null, "id_dep_fk",new String[]{String.valueOf(id_dep_fk)},null,null,"id_dep_fk");
+            excluir = true;
+            while (cursor.moveToNext()){
+                this.id_dep_fk = cursor.getString(cursor.getColumnIndex("id_dep_fk"));
+                nome_fun = cursor.getString(cursor.getColumnIndex("nome_fun"));
+                rg_fun = cursor.getString(cursor.getColumnIndex("rg_fun"));
+                id_fun = cursor.getInt(cursor.getColumnIndex("id_fun"));
+                excluir = false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if ((cursor != null) && (!cursor.isClosed()))
+                cursor.close();
+            if (sqLiteDatabase != null)
+                sqLiteDatabase.close();
+            if (bdDepartamento != null)
+                bdDepartamento.close();
+        }
+    }
+
 
 }

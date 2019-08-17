@@ -148,6 +148,7 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
                     editTextRg.setError(getString(R.string.documento_invalido));
                     valido = false;
                 }
+                //verifica se o departamento foi selecionado
                 if (funcionarioDAO.getId_dep_fk().equals("")){
                     Toast.makeText(this, "Selecione um departamento", Toast.LENGTH_SHORT).show();
                     valido = false;
