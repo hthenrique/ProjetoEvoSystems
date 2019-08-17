@@ -148,6 +148,10 @@ public class add_fun extends AppCompatActivity implements View.OnClickListener {
                     editTextRg.setError(getString(R.string.documento_invalido));
                     valido = false;
                 }
+                if (funcionarioDAO.getId_dep_fk().equals("")){
+                    Toast.makeText(this, "Selecione um departamento", Toast.LENGTH_SHORT).show();
+                    valido = false;
+                }
                 //chama o metodo de salvar funcionario
                 if (valido){
                     funcionarioDAO.salvarFun();
